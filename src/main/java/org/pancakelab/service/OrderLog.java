@@ -35,4 +35,8 @@ public class OrderLog {
         log.append("Order %s with %d pancakes ".formatted(order.getId(), pancakesInOrder))
            .append("for building %d, room %d out for delivery.".formatted(order.getBuilding(), order.getRoom()));
     }
+
+    public static void logValidation(){
+        log.append("Invalid input");
+    }
 }

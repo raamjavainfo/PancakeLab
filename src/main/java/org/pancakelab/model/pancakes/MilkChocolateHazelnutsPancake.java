@@ -17,7 +17,7 @@ public class MilkChocolateHazelnutsPancake extends MilkChocolatePancake {
     }
 
     @Override
-    public List<String> ingredients() {
-        return List.of("milk chocolate", "hazelnuts");
+    public List<Ingredient> ingredients() {
+        return List.of(Ingredient.MILKCHOCOLATE, Ingredient.HAZELNUTS);
     }
 }

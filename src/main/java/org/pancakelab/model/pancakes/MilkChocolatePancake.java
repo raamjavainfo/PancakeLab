@@ -17,7 +17,7 @@ public class MilkChocolatePancake implements PancakeRecipe {
     }
 
     @Override
-    public List<String> ingredients() {
-        return List.of("milk chocolate");
+    public List<Ingredient> ingredients() {
+        return List.of(Ingredient.MILKCHOCOLATE);
     }
 }
