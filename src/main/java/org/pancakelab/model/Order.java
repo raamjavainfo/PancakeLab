@@ -2,13 +2,14 @@ package org.pancakelab.model;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Order {
     private final UUID id;
-    private final int building;
-    private final int room;
+    private final AtomicInteger building;
+    private final AtomicInteger room;
 
-    public Order(int building, int room) {
+    public Order(AtomicInteger building, AtomicInteger room) {
         this.id = UUID.randomUUID();
         this.building = building;
         this.room = room;
@@ -18,11 +19,11 @@ public class Order {
         return id;
     }
 
-    public int getBuilding() {
+    public AtomicInteger getBuilding() {
         return building;
     }
 
-    public int getRoom() {
+    public AtomicInteger getRoom() {
         return room;
     }
 

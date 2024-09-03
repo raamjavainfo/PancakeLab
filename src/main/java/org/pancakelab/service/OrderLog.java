@@ -13,7 +13,7 @@ public class OrderLog {
 
         log.append("Added pancake with description '%s' ".formatted(description))
            .append("to order %s containing %d pancakes, ".formatted(order.getId(), pancakesInOrder))
-           .append("for building %d, room %d.".formatted(order.getBuilding(), order.getRoom()));
+           .append("for building %d, room %d.".formatted(order.getBuilding().get(), order.getRoom().get()));
     }
 
     public static void logRemovePancakes(Order order, String description, int count, List<PancakeRecipe> pancakes) {
@@ -21,18 +21,18 @@ public class OrderLog {
 
         log.append("Removed %d pancake(s) with description '%s' ".formatted(count, description))
            .append("from order %s now containing %d pancakes, ".formatted(order.getId(), pancakesInOrder))
-           .append("for building %d, room %d.".formatted(order.getBuilding(), order.getRoom()));
+           .append("for building %d, room %d.".formatted(order.getBuilding().get(), order.getRoom().get()));
     }
 
     public static void logCancelOrder(Order order, List<PancakeRecipe> pancakes) {
         long pancakesInOrder = pancakes.stream().filter(p -> p.getOrderId().equals(order.getId())).count();
         log.append("Cancelled order %s with %d pancakes ".formatted(order.getId(), pancakesInOrder))
-           .append("for building %d, room %d.".formatted(order.getBuilding(), order.getRoom()));
+           .append("for building %d, room %d.".formatted(order.getBuilding().get(), order.getRoom().get()));
     }
 
     public static void logDeliverOrder(Order order, List<PancakeRecipe> pancakes) {
         long pancakesInOrder = pancakes.stream().filter(p -> p.getOrderId().equals(order.getId())).count();
         log.append("Order %s with %d pancakes ".formatted(order.getId(), pancakesInOrder))
-           .append("for building %d, room %d out for delivery.".formatted(order.getBuilding(), order.getRoom()));
+           .append("for building %d, room %d out for delivery.".formatted(order.getBuilding().get(), order.getRoom().get()));
     }
 }

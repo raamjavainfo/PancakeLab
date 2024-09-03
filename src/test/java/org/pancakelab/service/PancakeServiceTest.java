@@ -30,8 +30,8 @@ public class PancakeServiceTest {
         // exercise
         order = pancakeService.createOrder(10, 20);
 
-        assertEquals(10, order.getBuilding());
-        assertEquals(20, order.getRoom());
+        assertEquals(10, order.getBuilding().get());
+        assertEquals(20, order.getRoom().get());
 
         // verify
 
@@ -50,14 +50,14 @@ public class PancakeServiceTest {
         List<String> ordersPancakes = pancakeService.viewOrder(order.getId());
 
         assertEquals(List.of(DARK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             DARK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             DARK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION), ordersPancakes);
+                DARK_CHOCOLATE_PANCAKE_DESCRIPTION,
+                DARK_CHOCOLATE_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION), ordersPancakes);
 
         // tear down
     }
@@ -76,8 +76,8 @@ public class PancakeServiceTest {
         List<String> ordersPancakes = pancakeService.viewOrder(order.getId());
 
         assertEquals(List.of(DARK_CHOCOLATE_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
-                             MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION), ordersPancakes);
+                MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
+                MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION), ordersPancakes);
 
         // tear down
     }

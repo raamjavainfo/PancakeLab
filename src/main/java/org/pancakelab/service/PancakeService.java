@@ -7,13 +7,13 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PancakeService {
-    private List<Order>         orders          = new ArrayList<>();
-    private Set<UUID>           completedOrders = new HashSet<>();
-    private Set<UUID>           preparedOrders  = new HashSet<>();
-    private List<PancakeRecipe> pancakes        = new ArrayList<>();
+    private List<Order>         orders          = Collections.synchronizedList(new LinkedList<>());
+    private Set<UUID>           completedOrders = Collections.synchronizedSet(new TreeSet<>());
+    private Set<UUID>           preparedOrders  = Collections.synchronizedSet(new TreeSet<>());
+    private List<PancakeRecipe> pancakes        = Collections.synchronizedList(new LinkedList<>());;
 
     public Order createOrder(int building, int room) {
-        Order order = new Order(building, room);
+        Order order = new Order(new AtomicInteger(building), new AtomicInteger(room));
         orders.add(order);
         return order;
     }

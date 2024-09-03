@@ -18,6 +18,9 @@ public class MilkChocolatePancake implements PancakeRecipe {
 
     @Override
     public List<String> ingredients() {
-        return List.of("milk chocolate");
+        if(validateIngredients(List.of("milk chocolate"))){
+            return List.of("milk chocolate");
+        }
+        return null;
     }
 }

@@ -18,6 +18,9 @@ public class DarkChocolateWhippedCreamPancake extends DarkChocolatePancake {
 
     @Override
     public List<String> ingredients() {
-        return List.of("dark chocolate", "whipped cream");
+        if(validateIngredients(List.of("dark chocolate", "whipped cream"))) {
+            return List.of("dark chocolate", "whipped cream");
+        }
+        return null;
     }
 }
