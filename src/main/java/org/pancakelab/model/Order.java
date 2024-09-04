@@ -6,10 +6,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Order {
     private final UUID id;
-    private final AtomicInteger building;
-    private final AtomicInteger room;
+    private final Integer building;
+    private final Integer room;
 
-    public Order(AtomicInteger building, AtomicInteger room) {
+    public Order(Integer building, Integer room) {
         this.id = UUID.randomUUID();
         this.building = building;
         this.room = room;
@@ -19,11 +19,11 @@ public class Order {
         return id;
     }
 
-    public AtomicInteger getBuilding() {
+    public Integer getBuilding() {
         return building;
     }
 
-    public AtomicInteger getRoom() {
+    public Integer getRoom() {
         return room;
     }
 

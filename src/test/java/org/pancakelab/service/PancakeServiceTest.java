@@ -30,8 +30,8 @@ public class PancakeServiceTest {
         // exercise
         order = pancakeService.createOrder(10, 20);
 
-        assertEquals(10, order.getBuilding().get());
-        assertEquals(20, order.getRoom().get());
+        assertEquals(10, order.getBuilding());
+        assertEquals(20, order.getRoom());
 
         // verify
 

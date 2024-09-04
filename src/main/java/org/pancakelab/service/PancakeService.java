@@ -7,18 +7,24 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PancakeService {
-    private List<Order>         orders          = Collections.synchronizedList(new LinkedList<>());
-    private Set<UUID>           completedOrders = Collections.synchronizedSet(new TreeSet<>());
-    private Set<UUID>           preparedOrders  = Collections.synchronizedSet(new TreeSet<>());
-    private List<PancakeRecipe> pancakes        = Collections.synchronizedList(new LinkedList<>());;
+    private List<Order>         orders          = Collections.synchronizedList(new ArrayList<>());
+    private Set<UUID>           completedOrders = Collections.synchronizedSet(new HashSet<>());
+    private Set<UUID>           preparedOrders  = Collections.synchronizedSet(new HashSet<>());
+    private List<PancakeRecipe> pancakes        = Collections.synchronizedList(new ArrayList<>());;
 
     public Order createOrder(int building, int room) {
-        Order order = new Order(new AtomicInteger(building), new AtomicInteger(room));
+        if(!validationGreaterThanZero(building) || !validationGreaterThanZero(room)){
+            return null;
+        }
+        Order order = new Order(Integer.valueOf(building), Integer.valueOf(room));
         orders.add(order);
         return order;
     }
 
     public void addDarkChocolatePancake(UUID orderId, int count) {
+        if(!validationGreaterThanZero(count)){
+            return;
+        }
         for (int i = 0; i < count; ++i) {
             addPancake(new DarkChocolatePancake(),
                        orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get());
@@ -26,6 +32,9 @@ public class PancakeService {
     }
 
     public void addDarkChocolateWhippedCreamPancake(UUID orderId, int count) {
+        if(!validationGreaterThanZero(count)){
+            return;
+        }
         for (int i = 0; i < count; ++i) {
             addPancake(new DarkChocolateWhippedCreamPancake(),
                        orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get());
@@ -33,6 +42,9 @@ public class PancakeService {
     }
 
     public void addDarkChocolateWhippedCreamHazelnutsPancake(UUID orderId, int count) {
+        if(!validationGreaterThanZero(count)){
+            return;
+        }
         for (int i = 0; i < count; ++i) {
             addPancake(new DarkChocolateWhippedCreamHazelnutsPancake(),
                        orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get());
@@ -40,6 +52,9 @@ public class PancakeService {
     }
 
     public void addMilkChocolatePancake(UUID orderId, int count) {
+        if(!validationGreaterThanZero(count)){
+            return;
+        }
         for (int i = 0; i < count; ++i) {
             addPancake(new MilkChocolatePancake(),
                        orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get());
@@ -47,6 +62,9 @@ public class PancakeService {
     }
 
     public void addMilkChocolateHazelnutsPancake(UUID orderId, int count) {
+        if(!validationGreaterThanZero(count)){
+            return;
+        }
         for (int i = 0; i < count; ++i) {
             addPancake(new MilkChocolateHazelnutsPancake(),
                        orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get());
@@ -119,5 +137,12 @@ public class PancakeService {
         preparedOrders.removeIf(u -> u.equals(orderId));
 
         return new Object[] {order, pancakesToDeliver};
+    }
+
+    private boolean validationGreaterThanZero(int count){
+        if(count>0){
+            return true;
+        }
+        return false;
     }
 }
