@@ -85,6 +85,9 @@ public class PancakeService {
     }
 
     public void removePancakes(String description, UUID orderId, int count) {
+        if(!validationGreaterThanZero(count)){
+            return;
+        }
         final AtomicInteger removedCount = new AtomicInteger(0);
         pancakes.removeIf(pancake -> {
             return pancake.getOrderId().equals(orderId) &&

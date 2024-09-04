@@ -24,6 +24,19 @@ public class PancakeServiceTest {
 
     @Test
     @org.junit.jupiter.api.Order(10)
+    public void GivenOrderDoesNotExist_WhenCreatingOrder_ThenOrderCreatedWithInCorrectData_Test() {
+        // setup
+
+        // exercise
+        order = pancakeService.createOrder(-10, 20);
+
+        assertNull(order);
+        // verify
+
+        // tear down
+    }
+    @Test
+    @org.junit.jupiter.api.Order(11)
     public void GivenOrderDoesNotExist_WhenCreatingOrder_ThenOrderCreatedWithCorrectData_Test() {
         // setup
 
@@ -58,6 +71,21 @@ public class PancakeServiceTest {
                 MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
                 MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION,
                 MILK_CHOCOLATE_HAZELNUTS_PANCAKE_DESCRIPTION), ordersPancakes);
+
+        // tear down
+    }
+    @Test
+    @org.junit.jupiter.api.Order(20)
+    public void GivenOrderExists_WhenAddingPancakes_ThenInCorrectNumberOfPancakesAdded_Test() {
+        // setup
+
+        // exercise
+        addPancakesWithIncorrect();
+
+        // verify
+        List<String> ordersPancakes = pancakeService.viewOrder(order.getId());
+
+        assertEquals(0, ordersPancakes.size());
 
         // tear down
     }
@@ -169,5 +197,11 @@ public class PancakeServiceTest {
         pancakeService.addDarkChocolatePancake(order.getId(), 3);
         pancakeService.addMilkChocolatePancake(order.getId(), 3);
         pancakeService.addMilkChocolateHazelnutsPancake(order.getId(), 3);
+    }
+
+    private void addPancakesWithIncorrect() {
+        pancakeService.addDarkChocolatePancake(order.getId(), -3);
+        pancakeService.addMilkChocolatePancake(order.getId(), -3);
+        pancakeService.addMilkChocolateHazelnutsPancake(order.getId(), -3);
     }
 }
